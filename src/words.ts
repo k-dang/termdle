@@ -1,4 +1,5 @@
 // Common 5-letter words that can be used as target words
+// prettier-ignore
 export const targetWords = [
   'about', 'above', 'abuse', 'actor', 'acute', 'admit', 'adopt', 'adult', 'after', 'again',
   'agent', 'agree', 'ahead', 'alarm', 'album', 'alert', 'alien', 'align', 'alike', 'alive',
@@ -56,6 +57,7 @@ export const targetWords = [
 ];
 
 // Extended list of valid 5-letter words for guesses (includes target words + additional valid words)
+// prettier-ignore
 export const validWords = [
   ...targetWords,
   // Common 5-letter words
@@ -75,8 +77,8 @@ export const validWords = [
   'acton', 'actos', 'acyls', 'adage', 'adapt', 'adaws', 'adays', 'addax', 'added', 'adder',
   'addio', 'addle', 'adeem', 'adept', 'adhan', 'adieu', 'adios', 'adits', 'adjag', 'admix',
   'adobe', 'adobo', 'adore', 'adorn', 'adown', 'adoze', 'adrad', 'adred', 'adsum', 'adunc',
-  'adust', 'advew', 'aecia', 'aedes', 'aegis', 'aeons', 'aeros', 'aesir', 'afald', 'afar',
-  'afars', 'afear', 'affix', 'afire', 'aflaj', 'afoot', 'afore', 'afoul', 'afrit', 'afros',
+  'adust', 'advew', 'aecia', 'aedes', 'aegis', 'aeons', 'aeros', 'aesir', 'afald', 'afars', 
+  'afear', 'affix', 'afire', 'aflaj', 'afoot', 'afore', 'afoul', 'afrit', 'afros',
   'agama', 'agape', 'agars', 'agast', 'agate', 'agave', 'agaze', 'agene', 'agers', 'agger',
   'aggie', 'aggro', 'aghas', 'agile', 'aging', 'agios', 'agism', 'agist', 'agita', 'aglet',
   'agley', 'agloo', 'aglow', 'agmas', 'agmip', 'agone', 'agons', 'agony', 'agood', 'agora',
@@ -101,13 +103,20 @@ export const validWords = [
   'amowt', 'amped', 'ample', 'amply', 'ampul', 'amrit', 'amuck', 'amuse'
 ];
 
+
+/**
+ * Returns a random 5-letter target word from the predefined list.
+ *
+ * @returns {string} A randomly selected 5-letter word in lowercase.
+ * @throws {Error} If a valid string cannot be retrieved from the target words list.
+ */
 export function getRandomTargetWord(): string {
-  const idx = Math.floor(Math.random() * targetWords.length);
-  const word = targetWords[idx];
-  if (typeof word !== 'string') {
-    throw new Error("[Words]: Failed to grab a random target word")
-  } 
-  return word.toLowerCase();
+  const randomIdx = Math.floor(Math.random() * targetWords.length);
+  const randomWord = targetWords[randomIdx];
+  if (typeof randomWord !== 'string') {
+    throw new Error('[Words]: Failed to grab a random target word');
+  }
+  return randomWord.toLowerCase();
 }
 
 export function isValidWord(word: string): boolean {

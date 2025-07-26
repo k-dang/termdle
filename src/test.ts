@@ -1,6 +1,6 @@
-import { WordleGame, LetterState } from './game.js';
-import { getRandomTargetWord, isValidWord } from './words.js';
-import { Display } from './display.js';
+import { WordleGame } from './game';
+import { getRandomTargetWord, isValidWord } from './words';
+import { Display } from './display';
 
 // Test basic functionality
 console.log('🧪 Testing Terminal Wordle...');

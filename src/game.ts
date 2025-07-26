@@ -1,4 +1,4 @@
-import { getRandomTargetWord, isValidWord } from './words.ts';
+import { getRandomTargetWord, isValidWord } from './words';
 
 export enum LetterState {
   CORRECT = 'correct', // Green - correct letter in correct position
@@ -74,6 +74,8 @@ export class WordleGame {
     return { valid: true, result };
   }
 
+  // guess is guaranteed to be length 5 due to runtime check
+  // targetWord is guaranteed to be length 5 from getRandomTargetWord
   private evaluateGuess(guess: string): LetterResult[] {
     const target = this.state.targetWord;
     const guessArray = guess.split('');
@@ -90,30 +92,31 @@ export class WordleGame {
     }
 
     // First pass: find correct positions (green)
-    for (let i = 0; i < 5; i++) {
-      if (guessArray[i] === targetArray[i]) {
-        result[i] = { letter: guessArray[i], state: LetterState.CORRECT };
+    for (const [i, guessLetter] of guessArray.entries()) {
+      if (guessLetter === targetArray[i]) {
+        result[i] = { letter: guessLetter, state: LetterState.CORRECT };
         usedPositions.add(i);
         // Reduce count for this letter
-        const count = targetLetterCounts.get(guessArray[i]) || 0;
-        targetLetterCounts.set(guessArray[i], count - 1);
+        const count = targetLetterCounts.get(guessLetter) || 0;
+        targetLetterCounts.set(guessLetter, count - 1);
       }
     }
 
     // Second pass: find present letters (yellow) and absent letters (gray)
-    for (let i = 0; i < 5; i++) {
+    for (const [i, guessLetter] of guessArray.entries()) {
       if (usedPositions.has(i)) {
-        continue; // Already marked as correct
+        // Already marked as correct
+        continue;
       }
 
-      const letter = guessArray[i];
-      const remainingCount = targetLetterCounts.get(letter) || 0;
+      const remainingCount = targetLetterCounts.get(guessLetter) || 0;
 
       if (remainingCount > 0) {
-        result[i] = { letter, state: LetterState.PRESENT };
-        targetLetterCounts.set(letter, remainingCount - 1);
+        // Should only be present if there are remaining unmatched instances
+        result[i] = { letter: guessLetter, state: LetterState.PRESENT };
+        targetLetterCounts.set(guessLetter, remainingCount - 1);
       } else {
-        result[i] = { letter, state: LetterState.ABSENT };
+        result[i] = { letter: guessLetter, state: LetterState.ABSENT };
       }
     }
 

@@ -26,19 +26,19 @@ export class StatsManager {
       won: 0,
       currentStreak: 0,
       maxStreak: 0,
-      guessDistribution: [0, 0, 0, 0, 0, 0] // 6 possible guess counts
+      guessDistribution: [0, 0, 0, 0, 0, 0], // 6 possible guess counts
     };
 
     try {
       if (existsSync(this.statsFile)) {
         const data = readFileSync(this.statsFile, 'utf8');
         const loadedStats = JSON.parse(data);
-        
+
         // Ensure all properties exist (for backward compatibility)
         return {
           ...defaultStats,
           ...loadedStats,
-          guessDistribution: loadedStats.guessDistribution || defaultStats.guessDistribution
+          guessDistribution: loadedStats.guessDistribution || defaultStats.guessDistribution,
         };
       }
     } catch (error) {
@@ -62,14 +62,14 @@ export class StatsManager {
     if (won && guessCount) {
       this.stats.won++;
       this.stats.currentStreak++;
-      
+
       if (this.stats.currentStreak > this.stats.maxStreak) {
         this.stats.maxStreak = this.stats.currentStreak;
       }
 
       // Record guess distribution (guessCount is 1-indexed, array is 0-indexed)
       if (guessCount >= 1 && guessCount <= 6) {
-        this.stats.guessDistribution[guessCount - 1]++;
+        this.stats.guessDistribution[guessCount - 1]!++;
       }
     } else {
       // Lost the game
@@ -89,7 +89,7 @@ export class StatsManager {
       won: 0,
       currentStreak: 0,
       maxStreak: 0,
-      guessDistribution: [0, 0, 0, 0, 0, 0]
+      guessDistribution: [0, 0, 0, 0, 0, 0],
     };
     this.saveStats();
   }
@@ -101,12 +101,12 @@ export class StatsManager {
 
   public getAverageGuesses(): number {
     if (this.stats.won === 0) return 0;
-    
+
     let totalGuesses = 0;
-    for (let i = 0; i < this.stats.guessDistribution.length; i++) {
-      totalGuesses += (i + 1) * this.stats.guessDistribution[i];
+    for (const [i, guesses] of this.stats.guessDistribution.entries()) {
+      totalGuesses += (i + 1) * guesses;
     }
-    
+
     return Math.round((totalGuesses / this.stats.won) * 100) / 100;
   }
 
@@ -121,14 +121,17 @@ export class StatsManager {
     console.log(`Max Streak: ${stats.maxStreak}`);
     console.log(`Average Guesses: ${this.getAverageGuesses()}`);
     console.log();
-    
+
     if (stats.won > 0) {
       console.log('Guess Distribution:');
-      for (let i = 0; i < stats.guessDistribution.length; i++) {
-        const count = stats.guessDistribution[i];
-        const percentage = stats.won > 0 ? Math.round((count / stats.won) * 100) : 0;
+      for (const [i, guessCount] of stats.guessDistribution.entries()) {
+        const percentage = stats.won > 0 ? Math.round((guessCount / stats.won) * 100) : 0;
         const bar = '█'.repeat(Math.floor(percentage / 5)); // Scale down for display
-        console.log(`${i + 1}: ${count.toString().padStart(3)} (${percentage.toString().padStart(2)}%) ${bar}`);
+        console.log(
+          `${i + 1}: ${guessCount.toString().padStart(3)} (${percentage
+            .toString()
+            .padStart(2)}%) ${bar}`
+        );
       }
     }
     console.log();
