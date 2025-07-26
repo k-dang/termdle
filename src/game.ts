@@ -1,9 +1,9 @@
-import { getRandomTargetWord, isValidWord } from './words.js';
+import { getRandomTargetWord, isValidWord } from './words.ts';
 
 export enum LetterState {
-  CORRECT = 'correct',     // Green - correct letter in correct position
-  PRESENT = 'present',     // Yellow - correct letter in wrong position
-  ABSENT = 'absent'        // Gray - letter not in word
+  CORRECT = 'correct', // Green - correct letter in correct position
+  PRESENT = 'present', // Yellow - correct letter in wrong position
+  ABSENT = 'absent', // Gray - letter not in word
 }
 
 export interface LetterResult {
@@ -32,7 +32,7 @@ export class WordleGame {
       currentGuess: 0,
       gameOver: false,
       won: false,
-      maxGuesses: 6
+      maxGuesses: 6,
     };
   }
 
@@ -56,7 +56,7 @@ export class WordleGame {
 
     // Process the guess
     const result = this.evaluateGuess(guess.toLowerCase());
-    
+
     this.state.guesses.push(guess.toLowerCase());
     this.state.results.push(result);
     this.state.currentGuess++;
@@ -128,7 +128,7 @@ export class WordleGame {
       currentGuess: 0,
       gameOver: false,
       won: false,
-      maxGuesses: 6
+      maxGuesses: 6,
     };
   }
 

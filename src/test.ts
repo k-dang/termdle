@@ -28,7 +28,10 @@ console.log('Initial state - Current guess:', game.getState().currentGuess);
 const testResult = game.makeGuess('hello');
 console.log('Test guess "hello" valid:', testResult.valid);
 if (testResult.result) {
-  console.log('Result letters:', testResult.result.map(r => `${r.letter}:${r.state}`));
+  console.log(
+    'Result letters:',
+    testResult.result.map((r) => `${r.letter}:${r.state}`)
+  );
 }
 
 // Test 4: Display (non-interactive)

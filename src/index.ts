@@ -19,7 +19,7 @@ async function playGame() {
   Display.clearScreen();
   Display.showTitle();
   Display.showInstructions();
-  
+
   while (true) {
     // Show current game state
     Display.showGameBoard(game.getState());
@@ -30,7 +30,7 @@ async function playGame() {
       // Record the game result
       statsManager.recordGame(game.getState().won, game.getState().currentGuess);
       statsManager.showDetailedStats();
-      
+
       // Ask what to do next
       Display.showGameOverOptions();
       const option = await askQuestion('> ');
@@ -51,18 +51,18 @@ async function playGame() {
       // Game is still active, get next guess
       Display.showPrompt();
       const guess = await askQuestion('');
-      
+
       if (guess.toLowerCase() === 'quit' || guess.toLowerCase() === 'q') {
         break;
       }
-      
+
       const result = game.makeGuess(guess);
 
       if (!result.valid) {
         Display.showError(result.message || 'Invalid guess');
         await askQuestion('Press Enter to continue...');
       }
-      
+
       // Clear screen and show updated state
       Display.clearScreen();
       Display.showTitle();

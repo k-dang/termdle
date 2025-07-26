@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { LetterResult, LetterState, GameState } from './game.js';
+import { type LetterResult, LetterState, type GameState } from './game.ts';
 
 export class Display {
   public static clearScreen(): void {
@@ -31,12 +31,12 @@ export class Display {
     for (let i = 0; i < results.length; i++) {
       const row = results[i];
       let display = '';
-      
+
       for (const letterResult of row) {
         const styledLetter = this.styleLetterResult(letterResult);
         display += styledLetter + ' ';
       }
-      
+
       console.log(`${i + 1}. ${display}`);
     }
 
@@ -52,7 +52,7 @@ export class Display {
 
   private static styleLetterResult(letterResult: LetterResult): string {
     const letter = letterResult.letter.toUpperCase();
-    
+
     switch (letterResult.state) {
       case LetterState.CORRECT:
         return chalk.bgGreen.black(` ${letter} `);
@@ -71,7 +71,11 @@ export class Display {
     if (gameOver) {
       if (won) {
         console.log(chalk.green.bold('🎉 Congratulations! You won! 🎉'));
-        console.log(chalk.green(`You solved it in ${currentGuess} ${currentGuess === 1 ? 'guess' : 'guesses'}!`));
+        console.log(
+          chalk.green(
+            `You solved it in ${currentGuess} ${currentGuess === 1 ? 'guess' : 'guesses'}!`
+          )
+        );
       } else {
         console.log(chalk.red.bold('💀 Game Over! 💀'));
         console.log(chalk.red(`The word was: ${chalk.bold(gameState.targetWord.toUpperCase())}`));
@@ -106,30 +110,28 @@ export class Display {
 
   public static showKeyboard(gameState: GameState): void {
     const { results } = gameState;
-    
+
     // Track letter states across all guesses
     const letterStates = new Map<string, LetterState>();
-    
+
     for (const row of results) {
       for (const letterResult of row) {
         const letter = letterResult.letter.toLowerCase();
         const currentState = letterStates.get(letter);
-        
+
         // Priority: CORRECT > PRESENT > ABSENT
-        if (!currentState || 
-            (letterResult.state === LetterState.CORRECT) ||
-            (letterResult.state === LetterState.PRESENT && currentState === LetterState.ABSENT)) {
+        if (
+          !currentState ||
+          letterResult.state === LetterState.CORRECT ||
+          (letterResult.state === LetterState.PRESENT && currentState === LetterState.ABSENT)
+        ) {
           letterStates.set(letter, letterResult.state);
         }
       }
     }
 
     // Define keyboard layout
-    const rows = [
-      'qwertyuiop',
-      'asdfghjkl',
-      'zxcvbnm'
-    ];
+    const rows = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'];
 
     console.log(chalk.bold('Keyboard:'));
     console.log('─'.repeat(30));
@@ -139,7 +141,7 @@ export class Display {
       for (const letter of row) {
         const state = letterStates.get(letter);
         let styledLetter: string;
-        
+
         if (state) {
           switch (state) {
             case LetterState.CORRECT:
@@ -155,7 +157,7 @@ export class Display {
         } else {
           styledLetter = chalk.bgWhite.black(` ${letter.toUpperCase()} `);
         }
-        
+
         display += styledLetter + ' ';
       }
       console.log(`  ${display}`);
@@ -163,12 +165,19 @@ export class Display {
     console.log();
   }
 
-  public static showStats(stats: { played: number; won: number; currentStreak: number; maxStreak: number }): void {
+  public static showStats(stats: {
+    played: number;
+    won: number;
+    currentStreak: number;
+    maxStreak: number;
+  }): void {
     console.log(chalk.bold('Statistics:'));
     console.log('─'.repeat(30));
     console.log(`Games Played: ${stats.played}`);
     console.log(`Games Won: ${stats.won}`);
-    console.log(`Win Rate: ${stats.played > 0 ? Math.round((stats.won / stats.played) * 100) : 0}%`);
+    console.log(
+      `Win Rate: ${stats.played > 0 ? Math.round((stats.won / stats.played) * 100) : 0}%`
+    );
     console.log(`Current Streak: ${stats.currentStreak}`);
     console.log(`Max Streak: ${stats.maxStreak}`);
     console.log();

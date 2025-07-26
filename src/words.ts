@@ -63,7 +63,7 @@ export const validWords = [
   'gives', 'takes', 'feels', 'means', 'works', 'keeps', 'seems', 'turns', 'shows', 'moves',
   'hands', 'books', 'lines', 'parts', 'helps', 'finds', 'calls', 'tells', 'wants', 'needs',
   'opens', 'takes', 'stops', 'talks', 'walks', 'reads', 'lives', 'loves', 'hates', 'likes',
-  'knows', 'hopes', 'tries', 'falls', 'rises', 'rides', 'flies', 'sits', 'runs', 'jumps',
+  'knows', 'hopes', 'tries', 'falls', 'rises', 'rides', 'flies', 'jumps',
   // Additional valid words from dictionaries
   'aahed', 'aalii', 'aargh', 'abaca', 'abaci', 'abaft', 'abaka', 'abamp', 'abash', 'abate',
   'abaya', 'abbey', 'abbot', 'abear', 'abele', 'abers', 'abets', 'abhor', 'abide', 'abled',
@@ -102,7 +102,12 @@ export const validWords = [
 ];
 
 export function getRandomTargetWord(): string {
-  return targetWords[Math.floor(Math.random() * targetWords.length)].toLowerCase();
+  const idx = Math.floor(Math.random() * targetWords.length);
+  const word = targetWords[idx];
+  if (typeof word !== 'string') {
+    throw new Error("[Words]: Failed to grab a random target word")
+  } 
+  return word.toLowerCase();
 }
 
 export function isValidWord(word: string): boolean {
