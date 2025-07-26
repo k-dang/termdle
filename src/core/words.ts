@@ -103,7 +103,6 @@ export const validWords = [
   'amowt', 'amped', 'ample', 'amply', 'ampul', 'amrit', 'amuck', 'amuse'
 ];
 
-
 /**
  * Returns a random 5-letter target word from the predefined list.
  *

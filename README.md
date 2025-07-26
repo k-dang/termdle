@@ -5,22 +5,26 @@ A fully-featured Wordle clone that runs entirely in your terminal! Built with Ty
 ## Features
 
 ✅ **Classic Wordle Gameplay**
+
 - 6 attempts to guess a 5-letter word
 - Color-coded feedback: Green (correct position), Yellow (wrong position), Gray (not in word)
 - Over 400+ target words and 1000+ valid guess words
 
 ✅ **Beautiful Terminal UI**
+
 - Colorful game board with emoji and styled text
 - Live keyboard showing letter states
 - Clear instructions and game status
 
 ✅ **Statistics Tracking**
+
 - Games played, won, win percentage
 - Current and maximum win streaks
 - Guess distribution histogram
 - Persistent stats saved to your home directory
 
 ✅ **Quality of Life Features**
+
 - Input validation and error messages
 - Play again without restarting
 - Clean, responsive terminal interface
@@ -50,9 +54,9 @@ bun dev
 ## How to Play
 
 1. **Guess the Word**: Enter a 5-letter word and press Enter
-2. **Read the Clues**: 
+2. **Read the Clues**:
    - 🟢 **Green** = Correct letter in the correct position
-   - 🟡 **Yellow** = Correct letter in the wrong position  
+   - 🟡 **Yellow** = Correct letter in the wrong position
    - ⬜ **Gray** = Letter not in the word
 3. **Use Your Clues**: Make your next guess based on the feedback
 4. **Win or Learn**: You have 6 attempts to guess the word!

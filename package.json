@@ -7,14 +7,16 @@
     "cli": "bun run src/cli/index.tsx",
     "start": "bun run src/index.ts",
     "dev": "bun --watch src/index.ts",
-    "test": "bun run src/test.ts"
+    "test": "bun run src/test.ts",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "ink": "^6.0.1",
     "react": "^19.1.0"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "prettier": "^3.6.2"
   },
   "peerDependencies": {
     "typescript": "^5"
