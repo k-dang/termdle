@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { type LetterResult, LetterState, type GameState } from './game.ts';
+import { type LetterResult, LetterState, type GameState } from './game';
 
 export class Display {
   public static clearScreen(): void {

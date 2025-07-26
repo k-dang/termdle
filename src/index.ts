@@ -1,7 +1,7 @@
 import readline from 'readline';
-import { WordleGame } from './game';
-import { Display } from './display';
-import { StatsManager } from './stats';
+import { WordleGame } from './core/game';
+import { Display } from './core/display';
+import { StatsManager } from './core/stats';
 
 async function playGame() {
   const game = new WordleGame();
