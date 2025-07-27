@@ -3,9 +3,9 @@ import { render } from 'ink';
 import { App } from './ui/App';
 
 try {
-  const { waitUntilExit } = render(<App />);
+  const { waitUntilExit } = render(<App />, { exitOnCtrlC: true });
   await waitUntilExit();
-  console.log('exited');
+  exit();
 } catch (error) {
   console.error({ status: 'app exited with error', error });
   exit(1);

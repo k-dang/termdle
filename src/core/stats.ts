@@ -53,7 +53,7 @@ export class StatsManager {
     try {
       writeFileSync(this.statsFile, JSON.stringify(this.stats, null, 2));
     } catch (error) {
-      console.error(error)
+      console.error(error);
       console.warn('Could not save stats file');
     }
   }
