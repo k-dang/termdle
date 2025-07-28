@@ -35,7 +35,7 @@ export const GameBoard = () => {
   });
 
   return (
-    <Box flexDirection="column" marginBottom={1}>
+    <Box flexDirection="column" marginY={1}>
       {/* Show previous guesses first */}
       {results.map((row, i) => {
         return (
