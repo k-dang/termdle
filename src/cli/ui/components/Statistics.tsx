@@ -7,7 +7,9 @@ export const Statistics = () => {
 
   return (
     <Box flexDirection="column" alignItems="center" marginTop={1}>
-      <Text bold color="cyan">📊 Statistics</Text>
+      <Text bold color="cyan">
+        📊 Statistics
+      </Text>
       <Box flexDirection="row" gap={2}>
         <Box flexDirection="column" alignItems="center">
           <Text>Games Played</Text>
@@ -32,7 +34,7 @@ export const Statistics = () => {
           <Text bold>{stats.maxStreak}</Text>
         </Box>
       </Box>
-      
+
       <Box flexDirection="column" alignItems="center" marginTop={1}>
         <Text bold>Guess Distribution</Text>
         {stats.guessDistribution.map((count, index) => (
@@ -43,4 +45,4 @@ export const Statistics = () => {
       </Box>
     </Box>
   );
-}; 
+};

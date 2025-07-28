@@ -3,6 +3,8 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import { gameStateAtom, resetGameAtom, resetStatsAtom } from '../atoms/game-atoms';
 import { useState } from 'react';
 import { Statistics } from './Statistics';
+import { Keyboard } from './Keyboard';
+import Gradient from 'ink-gradient';
 
 export const GameStatus = () => {
   const { currentGuess, maxGuesses, gameOver, won, targetWord } = useAtomValue(gameStateAtom);
@@ -63,7 +65,12 @@ export const GameStatus = () => {
           </Box>
         </Box>
       ) : (
-        <Text color="blue">Guesses remaining: {maxGuesses - currentGuess}</Text>
+        <Box flexDirection="column" alignItems="center">
+          <Gradient name="vice">
+            <Text color="blue">Guesses remaining: {maxGuesses - currentGuess}</Text>
+          </Gradient>
+          <Keyboard />
+        </Box>
       )}
     </Box>
   );

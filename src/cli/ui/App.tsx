@@ -5,12 +5,7 @@ import { GameStatus } from './components/GameStatus';
 
 export const App = () => {
   return (
-    <Box
-      flexDirection="column"
-      width="100%"
-      alignItems="center"
-      paddingBottom={1}
-    >
+    <Box flexDirection="column" width="100%" alignItems="center" paddingBottom={1}>
       <Header />
       <GameBoard />
       <GameStatus />
