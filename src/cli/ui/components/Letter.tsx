@@ -1,16 +1,11 @@
 import { Box, Text } from 'ink';
 import { LetterState } from '../../../core/game';
+import { colors } from '../utils/colors';
 
 interface LetterProps {
   letter: string;
   state: LetterState;
 }
-
-const colors = {
-  [LetterState.CORRECT]: 'green',
-  [LetterState.PRESENT]: 'yellow',
-  [LetterState.ABSENT]: 'gray',
-};
 
 export const Letter = ({ letter, state }: LetterProps) => {
   const color = colors[state];
@@ -23,7 +18,7 @@ export const Letter = ({ letter, state }: LetterProps) => {
       alignItems="center"
       justifyContent="center"
     >
-      <Text color={colors[state]}>{letter.toUpperCase()}</Text>
+      <Text color={color}>{letter.toUpperCase()}</Text>
     </Box>
   );
 };
