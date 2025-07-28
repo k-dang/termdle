@@ -1,5 +1,5 @@
 {
-  "name": "terminal-wordle",
+  "name": "termdle",
   "module": "index.ts",
   "type": "module",
   "private": true,

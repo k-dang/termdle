@@ -1,6 +1,10 @@
-# 🟢 Terminal Wordle 🟡
+# Termdle
 
-A fully-featured Wordle clone that runs entirely in your terminal! Built with TypeScript and Bun.
+A fully-featured Wordle clone that runs entirely in your terminal! Built with TypeScript, React, and Ink.
+
+## Installation
+
+TBD
 
 ## Features
 
@@ -8,13 +12,12 @@ A fully-featured Wordle clone that runs entirely in your terminal! Built with Ty
 
 - 6 attempts to guess a 5-letter word
 - Color-coded feedback: Green (correct position), Yellow (wrong position), Gray (not in word)
-- Over 400+ target words and 1000+ valid guess words
 
 ✅ **Beautiful Terminal UI**
 
+- Modern React-based interface using Ink
 - Colorful game board with emoji and styled text
 - Live keyboard showing letter states
-- Clear instructions and game status
 
 ✅ **Statistics Tracking**
 
@@ -23,74 +26,71 @@ A fully-featured Wordle clone that runs entirely in your terminal! Built with Ty
 - Guess distribution histogram
 - Persistent stats saved to your home directory
 
-✅ **Quality of Life Features**
+## Project Structure
 
-- Input validation and error messages
-- Play again without restarting
-- Clean, responsive terminal interface
+```
+├── src/
+│   ├── cli/
+│   │   ├── index.tsx          # Main CLI entry point
+│   │   └── ui/
+│   │       ├── App.tsx        # Main React application
+│   │       ├── atoms/         # Jotai state management
+│   │       ├── components/    # React components
+│   │       └── utils/         # UI utilities
+│   └── core/
+│       ├── game.ts            # Core game logic and word evaluation
+│       ├── display.ts         # Terminal UI and visual formatting
+│       ├── stats.ts           # Statistics tracking and persistence
+│       └── words.ts           # Word lists for targets and valid guesses
+├── package.json               # Project configuration
+└── tsconfig.json             # TypeScript configuration
+```
 
-## Installation
+## Local Development
 
-Make sure you have [Bun](https://bun.sh) installed, then:
+### Prerequisites
+
+- [Bun](https://bun.sh)
+
+### Setup
+
+1. **Clone the repository**
+
+```bash
+git clone <repository-url>
+cd terminal-wordle
+```
+
+2. **Install dependencies**
 
 ```bash
 bun install
 ```
 
-## Usage
-
-To start playing:
+3. **Verify installation**
 
 ```bash
 bun start
 ```
 
-Or for development:
+### Development Workflow
+
+**Start development server with hot reload**
 
 ```bash
 bun dev
 ```
 
-## How to Play
+This will start the game in watch mode, automatically restarting when you make changes.
 
-1. **Guess the Word**: Enter a 5-letter word and press Enter
-2. **Read the Clues**:
-   - 🟢 **Green** = Correct letter in the correct position
-   - 🟡 **Yellow** = Correct letter in the wrong position
-   - ⬜ **Gray** = Letter not in the word
-3. **Use Your Clues**: Make your next guess based on the feedback
-4. **Win or Learn**: You have 6 attempts to guess the word!
+**Run linting**
 
-## Game Controls
-
-- Type any 5-letter word to make a guess
-- After game ends:
-  - Type `play` or `p` to play again
-  - Type `quit` or `q` to exit
-
-## Project Structure
-
-```
-├── index.ts      # Main game loop and CLI interface
-├── game.ts       # Core game logic and word evaluation
-├── display.ts    # Terminal UI and visual formatting
-├── stats.ts      # Statistics tracking and persistence
-├── words.ts      # Word lists for targets and valid guesses
-└── package.json  # Project configuration
+```bash
+bun lint
 ```
 
-## Technical Details
+**Format code**
 
-- **Runtime**: Bun v1.2.15+
-- **Language**: TypeScript
-- **Dependencies**: Chalk (for terminal colors)
-- **Stats Storage**: JSON file in user's home directory
-- **Word Validation**: Curated list of valid English words
-
-## Development
-
-This project was created using `bun init` and follows modern TypeScript practices. The game uses a modular architecture with separate concerns for game logic, display, and statistics.
-
----
-
-Enjoy playing Terminal Wordle! 🎉
+```bash
+bun format
+```
