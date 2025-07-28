@@ -19,9 +19,7 @@ export const GameStatus = () => {
       } else if (lowerInput === 'q' || lowerInput === 'quit') {
         exit();
       } else {
-        // Handle invalid input
         setInvalidInput(true);
-        // Clear invalid input message after a short delay
         setTimeout(() => setInvalidInput(false), 2000);
       }
     }

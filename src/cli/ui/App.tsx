@@ -1,4 +1,4 @@
-import { Box, Text, useApp, useInput } from 'ink';
+import { Box } from 'ink';
 import { Header } from './components/Header';
 import { useAtomValue } from 'jotai';
 import { gameStateAtom } from './atoms/game-atom';
@@ -7,7 +7,6 @@ import { GameStatus } from './components/GameStatus';
 import { useEffect } from 'react';
 
 export const App = () => {
-  // const { exit } = useApp();
   const gameState = useAtomValue(gameStateAtom);
 
   useEffect(() => {
@@ -21,6 +20,7 @@ export const App = () => {
       borderStyle="single"
       borderColor="blue"
       alignItems="center"
+      paddingBottom={1}
     >
       <Header />
       <GameBoard />
