@@ -1,13 +1,20 @@
 import { Box, Text, useInput } from 'ink';
 import { Letter } from './Letter';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { gameStateAtom, makeGuessAtom } from '../atoms/game-atom';
+import { gameStateAtom, makeGuessAtom, recordGameAtom } from '../atoms/game-atoms';
 
 export const GameBoard = () => {
   const [letters, setLetters] = useState<string[]>([]);
-  const { results, currentGuess, maxGuesses, gameOver } = useAtomValue(gameStateAtom);
+  const { results, currentGuess, maxGuesses, gameOver, won } = useAtomValue(gameStateAtom);
   const makeGuess = useSetAtom(makeGuessAtom);
+  const recordGame = useSetAtom(recordGameAtom);
+
+  useEffect(() => {
+    if (gameOver) {
+      recordGame(won, currentGuess);
+    }
+  }, [gameOver, won, currentGuess, recordGame]);
 
   useInput((input, key) => {
     if (gameOver) {

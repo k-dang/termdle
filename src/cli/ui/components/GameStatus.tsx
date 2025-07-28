@@ -1,11 +1,13 @@
 import { Box, Text, useApp, useInput } from 'ink';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { gameStateAtom, resetGameAtom } from '../atoms/game-atom';
+import { gameStateAtom, resetGameAtom, resetStatsAtom } from '../atoms/game-atoms';
 import { useState } from 'react';
+import { Statistics } from './Statistics';
 
 export const GameStatus = () => {
   const { currentGuess, maxGuesses, gameOver, won, targetWord } = useAtomValue(gameStateAtom);
   const resetGame = useSetAtom(resetGameAtom);
+  const resetStats = useSetAtom(resetStatsAtom);
   const [invalidInput, setInvalidInput] = useState(false);
   const { exit } = useApp();
 
@@ -18,6 +20,9 @@ export const GameStatus = () => {
         setInvalidInput(false);
       } else if (lowerInput === 'q' || lowerInput === 'quit') {
         exit();
+      } else if (lowerInput === 'rs' || lowerInput === 'resetstats') {
+        resetStats();
+        setInvalidInput(false);
       } else {
         setInvalidInput(true);
         setTimeout(() => setInvalidInput(false), 2000);
@@ -44,9 +49,11 @@ export const GameStatus = () => {
               : `The word was: ${targetWord.toUpperCase()}`}
           </Text>
 
+          <Statistics />
+
           {invalidInput && (
             <Text color="red" italic>
-              Invalid input! Press 'p' to play again or 'q' to quit
+              Invalid input! Press 'p' to play again, or 'q' to quit
             </Text>
           )}
 
