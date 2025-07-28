@@ -6,8 +6,6 @@
   "scripts": {
     "start": "bun run src/cli/index.tsx",
     "dev": "bun --watch run src/cli/index.tsx",
-    "old": "bun run src/index.ts",
-    "test": "bun run src/test.ts",
     "lint": "eslint . --ext .ts,.tsx",
     "format": "prettier --write ."
   },

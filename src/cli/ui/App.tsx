@@ -8,8 +8,6 @@ export const App = () => {
     <Box
       flexDirection="column"
       width="100%"
-      borderStyle="single"
-      borderColor="blue"
       alignItems="center"
       paddingBottom={1}
     >

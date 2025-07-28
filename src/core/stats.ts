@@ -111,31 +111,4 @@ export class StatsManager {
 
     return Math.round((totalGuesses / this.stats.won) * 100) / 100;
   }
-
-  public showDetailedStats(): void {
-    const stats = this.getStats();
-    console.log('📊 Detailed Statistics:');
-    console.log('─'.repeat(40));
-    console.log(`Games Played: ${stats.played}`);
-    console.log(`Games Won: ${stats.won}`);
-    console.log(`Win Rate: ${this.getWinPercentage()}%`);
-    console.log(`Current Streak: ${stats.currentStreak}`);
-    console.log(`Max Streak: ${stats.maxStreak}`);
-    console.log(`Average Guesses: ${this.getAverageGuesses()}`);
-    console.log();
-
-    if (stats.won > 0) {
-      console.log('Guess Distribution:');
-      for (const [i, guessCount] of stats.guessDistribution.entries()) {
-        const percentage = stats.won > 0 ? Math.round((guessCount / stats.won) * 100) : 0;
-        const bar = '█'.repeat(Math.floor(percentage / 5)); // Scale down for display
-        console.log(
-          `${i + 1}: ${guessCount.toString().padStart(3)} (${percentage
-            .toString()
-            .padStart(2)}%) ${bar}`
-        );
-      }
-    }
-    console.log();
-  }
 }

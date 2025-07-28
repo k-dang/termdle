@@ -1,9 +1,9 @@
 import { getRandomTargetWord, isValidWord } from './words';
 
 export enum LetterState {
-  CORRECT = 'correct', // Green - correct letter in correct position
-  PRESENT = 'present', // Yellow - correct letter in wrong position
-  ABSENT = 'absent', // Gray - letter not in word
+  CORRECT = 'correct', // correct letter in correct position
+  PRESENT = 'present', // correct letter in wrong position
+  ABSENT = 'absent', // letter not in word
 }
 
 export interface LetterResult {
@@ -15,6 +15,7 @@ export interface GameState {
   targetWord: string;
   guesses: string[];
   results: LetterResult[][];
+  letterStates: Map<string, LetterState>;
   currentGuess: number;
   gameOver: boolean;
   won: boolean;
@@ -29,6 +30,7 @@ export class WordleGame {
       targetWord: getRandomTargetWord(),
       guesses: [],
       results: [],
+      letterStates: new Map<string, LetterState>(),
       currentGuess: 0,
       gameOver: false,
       won: false,
@@ -54,8 +56,9 @@ export class WordleGame {
       return { valid: false, message: 'Not a valid word!' };
     }
 
-    // Process the guess
     const result = this.evaluateGuess(guess.toLowerCase());
+
+    this.updateLetterStates(result);
 
     this.state.guesses.push(guess.toLowerCase());
     this.state.results.push(result);
@@ -123,11 +126,31 @@ export class WordleGame {
     return result;
   }
 
+  private updateLetterStates(result: LetterResult[]): void {
+    for (const letterResult of result) {
+      const letter = letterResult.letter.toLowerCase();
+      const currentState = this.state.letterStates.get(letter);
+
+      // Only update if new state has higher priority than current state
+      if (!currentState) {
+        this.state.letterStates.set(letter, letterResult.state);
+      } else if (letterResult.state === LetterState.CORRECT) {
+        this.state.letterStates.set(letter, letterResult.state);
+      } else if (
+        letterResult.state === LetterState.PRESENT &&
+        currentState === LetterState.ABSENT
+      ) {
+        this.state.letterStates.set(letter, letterResult.state);
+      }
+    }
+  }
+
   public reset(): void {
     this.state = {
       targetWord: getRandomTargetWord(),
       guesses: [],
       results: [],
+      letterStates: new Map<string, LetterState>(),
       currentGuess: 0,
       gameOver: false,
       won: false,
