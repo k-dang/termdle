@@ -4,7 +4,19 @@ A fully-featured Wordle clone that runs entirely in your terminal! Built with Ty
 
 ## Installation
 
-TBD
+### Global Installation (Recommended)
+
+Install Termdle globally to play from anywhere:
+
+```bash
+npm install -g termdle
+```
+
+Then simply run:
+
+```bash
+termdle
+```
 
 ## Features
 
