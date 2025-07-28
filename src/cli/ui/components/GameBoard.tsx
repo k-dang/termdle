@@ -6,10 +6,14 @@ import { gameStateAtom, makeGuessAtom } from '../atoms/game-atom';
 
 export const GameBoard = () => {
   const [letters, setLetters] = useState<string[]>([]);
-  const { results, currentGuess, maxGuesses } = useAtomValue(gameStateAtom);
+  const { results, currentGuess, maxGuesses, gameOver } = useAtomValue(gameStateAtom);
   const makeGuess = useSetAtom(makeGuessAtom);
 
   useInput((input, key) => {
+    if (gameOver) {
+      return;
+    }
+
     if (key.backspace) {
       setLetters((prev) => prev.slice(0, -1));
       return;
