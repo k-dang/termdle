@@ -69,8 +69,7 @@ termdle
 1. **Clone the repository**
 
 ```bash
-git clone <repository-url>
-cd terminal-wordle
+git clone git@github.com:k-dang/termdle.git
 ```
 
 2. **Install dependencies**
