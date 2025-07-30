@@ -1,6 +1,6 @@
 import { Box, Text } from 'ink';
 import Gradient from 'ink-gradient';
-import { useMemo } from 'react';
+import { getAsciiArtWidth } from '../utils/text';
 
 const asciiArt = `
 ████████╗███████╗██████╗ ███╗   ███╗██████╗ ██╗     ███████╗
@@ -13,21 +13,20 @@ const asciiArt = `
 
 const smallAsciiArt = `Termdle`;
 
-export const Header = () => {
-  const terminalWidth = useMemo(() => process.stdout?.columns || 50, []);
+interface HeaderProps {
+  terminalWidth: number;
+}
 
-  if (terminalWidth < 60) {
-    return (
-      <Gradient name="vice">
-        <Text>{smallAsciiArt.trim()}</Text>
-      </Gradient>
-    );
-  }
+export const Header = ({ terminalWidth }: HeaderProps) => {
+  const width = getAsciiArtWidth(asciiArt);
+
+  const displayTitle = terminalWidth >= width ? asciiArt.trim() : smallAsciiArt;
+  const artWidth = getAsciiArtWidth(displayTitle);
 
   return (
-    <Box flexDirection="column">
+    <Box flexDirection="column" width={artWidth} alignItems="flex-start">
       <Gradient name="vice">
-        <Text>{asciiArt.trim()}</Text>
+        <Text>{displayTitle}</Text>
       </Gradient>
     </Box>
   );
