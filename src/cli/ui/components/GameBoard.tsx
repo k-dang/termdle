@@ -59,7 +59,7 @@ export const GameBoard = () => {
               alignItems="center"
               justifyContent="center"
             >
-              {rowIndex == 0 ? <Text>{letters[i] || ''}</Text> : <Text>{''}</Text>}
+              {rowIndex == 0 && <Text>{letters[i] || ''}</Text>}
             </Box>
           ))}
         </Box>

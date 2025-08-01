@@ -10,7 +10,7 @@ export const Keyboard = () => {
   return (
     <Box flexDirection="column" alignItems="center" marginTop={1}>
       {rows.map((row, rowIndex) => (
-        <Box key={rowIndex} marginTop={rowIndex > 0 ? 1 : 0}>
+        <Box key={rowIndex}>
           {row.split('').map((letter) => {
             const state = letterStates.get(letter);
             const color = state == undefined ? 'white' : colors[state];

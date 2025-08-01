@@ -13,7 +13,7 @@ export const Letter = ({ letter, state }: LetterProps) => {
     <Box
       width={5}
       height={3}
-      borderStyle="double"
+      borderStyle="round"
       borderColor={color}
       alignItems="center"
       justifyContent="center"
