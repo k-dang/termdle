@@ -28,7 +28,6 @@ termdle
 ✅ **Beautiful Terminal UI**
 
 - Modern React-based interface using Ink
-- Colorful game board with emoji and styled text
 - Live keyboard showing letter states
 
 ✅ **Statistics Tracking**
@@ -48,6 +47,7 @@ termdle
 │   │       ├── App.tsx        # Main React application
 │   │       ├── atoms/         # Jotai state management
 │   │       ├── components/    # React components
+|   |       ├── hooks/         # React hooks
 │   │       └── utils/         # UI utilities
 │   └── core/
 │       ├── game.ts            # Core game logic and word evaluation
@@ -62,7 +62,8 @@ termdle
 
 ### Prerequisites
 
-- [Bun](https://bun.sh)
+- [Node.js](https://nodejs.org) (>= 18.0.0)
+- pnpm
 
 ### Setup
 
@@ -75,13 +76,19 @@ git clone git@github.com:k-dang/termdle.git
 2. **Install dependencies**
 
 ```bash
-bun install
+pnpm install
 ```
 
-3. **Verify installation**
+3. **Build the project**
 
 ```bash
-bun start
+pnpm run build
+```
+
+4. **Verify installation**
+
+```bash
+pnpm start
 ```
 
 ### Development Workflow
@@ -89,19 +96,37 @@ bun start
 **Start development server with hot reload**
 
 ```bash
-bun dev
+pnpm run dev
 ```
 
-This will start the game in watch mode, automatically restarting when you make changes.
+This will the `tsdown` bundler in watch mode and will automatically rebuild when you make changes.
+
+```bash
+pnpm run start
+```
+
+This will start the cli app
+
+**Build for production**
+
+```bash
+pnpm run build
+```
+
+**Type checking**
+
+```bash
+pnpm run typecheck
+```
 
 **Run linting**
 
 ```bash
-bun lint
+pnpm run lint
 ```
 
 **Format code**
 
 ```bash
-bun format
+pnpm run format
 ```
