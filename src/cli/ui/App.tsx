@@ -9,7 +9,7 @@ export const App = () => {
 
   return (
     <Box flexDirection="column" width={terminalWidth} alignItems="center" justifyContent="center">
-      <Header terminalWidth={terminalWidth} />
+      <Header terminalWidth={terminalWidth} terminalHeight={terminalHeight} />
       <GameBoard />
       <GameStatus />
     </Box>

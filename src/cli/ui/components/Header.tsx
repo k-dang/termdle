@@ -1,6 +1,7 @@
 import { Box, Text } from 'ink';
 import Gradient from 'ink-gradient';
 import { getAsciiArtWidth } from '../utils/text';
+import { useTerminalSize } from '../hooks/useTerminalSize';
 
 const asciiArt = `
 ████████╗███████╗██████╗ ███╗   ███╗██████╗ ██╗     ███████╗
@@ -15,12 +16,14 @@ const smallAsciiArt = `Termdle`;
 
 interface HeaderProps {
   terminalWidth: number;
+  terminalHeight: number;
 }
 
-export const Header = ({ terminalWidth }: HeaderProps) => {
+export const Header = ({ terminalWidth, terminalHeight }: HeaderProps) => {
   const width = getAsciiArtWidth(asciiArt);
 
-  const displayTitle = terminalWidth >= width ? asciiArt.trim() : smallAsciiArt;
+  const displayTitle =
+    terminalWidth >= width && terminalHeight >= 30 ? asciiArt.trim() : smallAsciiArt;
   const artWidth = getAsciiArtWidth(displayTitle);
 
   return (
