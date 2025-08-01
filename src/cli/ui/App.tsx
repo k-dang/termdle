@@ -1,4 +1,4 @@
-import { Box, Text } from 'ink';
+import { Box } from 'ink';
 import { Header } from './components/Header';
 import { GameBoard } from './components/GameBoard';
 import { GameStatus } from './components/GameStatus';

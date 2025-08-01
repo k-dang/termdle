@@ -1,7 +1,6 @@
 import { Box, Text } from 'ink';
 import Gradient from 'ink-gradient';
 import { getAsciiArtWidth } from '../utils/text';
-import { useTerminalSize } from '../hooks/useTerminalSize';
 
 const asciiArt = `
 ████████╗███████╗██████╗ ███╗   ███╗██████╗ ██╗     ███████╗

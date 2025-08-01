@@ -6,7 +6,13 @@ A fully-featured Wordle clone that runs entirely in your terminal! Built with Ty
 
 ### Global Installation (Recommended)
 
-Install Termdle globally to play from anywhere:
+Run with npx
+
+```bash
+npx termdle
+```
+
+or Install Termdle globally
 
 ```bash
 npm install -g termdle
@@ -62,7 +68,7 @@ termdle
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org) (>= 18.0.0)
+- [Node.js](https://nodejs.org) (>= 20.0.0)
 - pnpm
 
 ### Setup
