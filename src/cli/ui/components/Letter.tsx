@@ -8,7 +8,7 @@ interface LetterProps {
   isCompact?: boolean;
 }
 
-export const Letter = ({ letter, state, isCompact }: LetterProps) => {
+export const Letter = ({ letter, state, isCompact = false }: LetterProps) => {
   const color = colors[state];
   return (
     <Box

@@ -4,7 +4,10 @@
 
 A fully-featured wordle clone that runs entirely in your terminal! Built with TypeScript, React, and Ink.
 
-![termdle](images/termdle.png)
+<p align="center">
+  <img alt="termdle" src="/images/termdle.png" width="45%" />
+  <img alt="termdle-compact" src="/images/termdle-compact.png" width="45%"/> 
+</p>
 
 ## Installation
 
@@ -59,7 +62,6 @@ termdle
 │   │       └── utils/         # UI utilities
 │   └── core/
 │       ├── game.ts            # Core game logic and word evaluation
-│       ├── display.ts         # Terminal UI and visual formatting
 │       ├── stats.ts           # Statistics tracking and persistence
 │       └── words.ts           # Word lists for targets and valid guesses
 ├── package.json               # Project configuration
