@@ -1,10 +1,12 @@
 # Termdle
 
-A fully-featured Wordle clone that runs entirely in your terminal! Built with TypeScript, React, and Ink.
+[![npm version](https://badge.fury.io/js/termdle.svg)](https://www.npmjs.com/package/termdle)
+
+A fully-featured wordle clone that runs entirely in your terminal! Built with TypeScript, React, and Ink.
+
+![termdle](images/termdle.png)
 
 ## Installation
-
-### Global Installation (Recommended)
 
 Run with npx
 
@@ -68,55 +70,35 @@ termdle
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org) (>= 20.0.0)
-- pnpm
+- [node](https://nodejs.org) (>= 20.0.0)
+- [pnpm](https://pnpm.io/)
 
 ### Setup
 
-1. **Clone the repository**
+**Clone the repository**
 
 ```bash
 git clone git@github.com:k-dang/termdle.git
 ```
 
-2. **Install dependencies**
+**Install dependencies**
 
 ```bash
 pnpm install
 ```
 
-3. **Build the project**
-
-```bash
-pnpm run build
-```
-
-4. **Verify installation**
-
-```bash
-pnpm start
-```
-
 ### Development Workflow
 
-**Start development server with hot reload**
+Start the `tsdown` bundler in watch mode
 
 ```bash
 pnpm run dev
 ```
 
-This will the `tsdown` bundler in watch mode and will automatically rebuild when you make changes.
+Start the cli app in another terminal window
 
 ```bash
 pnpm run start
-```
-
-This will start the cli app
-
-**Build for production**
-
-```bash
-pnpm run build
 ```
 
 **Type checking**
@@ -135,4 +117,20 @@ pnpm run lint
 
 ```bash
 pnpm run format
+```
+
+## Publishing
+
+This repo is setup to publish upon merges to main via Github actions. You can also run the commands manually.
+
+**Bundle the package**
+
+```bash
+pnpm run build
+```
+
+**Publish the package**
+
+```bash
+pnpm run publish
 ```
