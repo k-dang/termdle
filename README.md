@@ -5,8 +5,8 @@
 A fully-featured wordle clone that runs entirely in your terminal! Built with TypeScript, React, and Ink.
 
 <p align="center">
-  <img alt="termdle" src="/images/termdle.png" width="45%" />
-  <img alt="termdle-compact" src="/images/termdle-compact.png" width="45%"/> 
+  <img alt="termdle" src="/images/termdle.png" width="65%" />
+  <img alt="termdle-compact" src="/images/termdle-compact.png" width="20%"/> 
 </p>
 
 ## Installation
