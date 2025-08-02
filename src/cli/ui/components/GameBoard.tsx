@@ -4,7 +4,11 @@ import { useEffect, useState } from 'react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { gameStateAtom, makeGuessAtom, recordGameAtom } from '../atoms/game-atoms';
 
-export const GameBoard = () => {
+interface GameBoardProps {
+  isCompact?: boolean;
+}
+
+export const GameBoard = ({ isCompact }: GameBoardProps) => {
   const [letters, setLetters] = useState<string[]>([]);
   const { results, currentGuess, maxGuesses, gameOver, won } = useAtomValue(gameStateAtom);
   const makeGuess = useSetAtom(makeGuessAtom);
@@ -35,13 +39,13 @@ export const GameBoard = () => {
   });
 
   return (
-    <Box flexDirection="column" marginY={1}>
+    <Box flexDirection="column" marginY={isCompact ? 0 : 1}>
       {/* Show previous guesses first */}
       {results.map((row, i) => {
         return (
           <Box key={i}>
             {row.map((letterResult, i) => (
-              <Letter key={`${i}`} letter={letterResult.letter} state={letterResult.state} />
+              <Letter key={`${i}`} letter={letterResult.letter} state={letterResult.state} isCompact={isCompact} />
             ))}
           </Box>
         );
@@ -52,8 +56,8 @@ export const GameBoard = () => {
           {[...Array(5)].map((_, i) => (
             <Box
               key={`letter-${i}`}
-              width={5}
-              height={3}
+              width={isCompact ? 3 : 5}
+              height={isCompact ? 2 : 3}
               borderStyle="round"
               borderColor="white"
               alignItems="center"

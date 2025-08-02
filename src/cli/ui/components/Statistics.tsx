@@ -2,15 +2,19 @@ import { Box, Text } from 'ink';
 import { useAtomValue } from 'jotai';
 import { getStatsAtom } from '../atoms/game-atoms';
 
-export const Statistics = () => {
+interface StatisticsProps {
+  isCompact?: boolean;
+}
+
+export const Statistics = ({ isCompact }: StatisticsProps) => {
   const stats = useAtomValue(getStatsAtom);
 
   return (
-    <Box flexDirection="column" alignItems="center" marginTop={1}>
+    <Box flexDirection="column" alignItems="center" marginTop={isCompact ? 0 : 1}>
       <Text bold color="cyan">
         📊 Statistics
       </Text>
-      <Box flexDirection="row" gap={2}>
+      <Box flexDirection="row" gap={isCompact ? 1 : 2}>
         <Box flexDirection="column" alignItems="center">
           <Text>Games Played</Text>
           <Text bold>{stats.played}</Text>
@@ -24,7 +28,7 @@ export const Statistics = () => {
           <Text bold>{stats.played > 0 ? Math.round((stats.won / stats.played) * 100) : 0}%</Text>
         </Box>
       </Box>
-      <Box flexDirection="row" gap={2} marginTop={1}>
+      <Box flexDirection="row" gap={isCompact ? 1 : 2} marginTop={isCompact ? 0 : 1}>
         <Box flexDirection="column" alignItems="center">
           <Text>Current Streak</Text>
           <Text bold>{stats.currentStreak}</Text>
@@ -35,7 +39,7 @@ export const Statistics = () => {
         </Box>
       </Box>
 
-      <Box flexDirection="column" alignItems="center" marginTop={1}>
+      <Box flexDirection="column" alignItems="center" marginTop={isCompact ? 0 : 1}>
         <Text bold>Guess Distribution</Text>
         {stats.guessDistribution.map((count, index) => (
           <Text key={index}>

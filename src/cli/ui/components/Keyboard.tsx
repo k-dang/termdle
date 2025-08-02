@@ -3,12 +3,16 @@ import { useAtomValue } from 'jotai';
 import { gameStateAtom } from '../atoms/game-atoms';
 import { colors } from '../utils/colors';
 
-export const Keyboard = () => {
+interface KeyboardProps {
+  isCompact?: boolean;
+}
+
+export const Keyboard = ({ isCompact }: KeyboardProps) => {
   const rows = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'];
   const { letterStates } = useAtomValue(gameStateAtom);
 
   return (
-    <Box flexDirection="column" alignItems="center" marginTop={1}>
+    <Box flexDirection="column" alignItems="center" marginTop={isCompact ? 0 : 1}>
       {rows.map((row, rowIndex) => (
         <Box key={rowIndex}>
           {row.split('').map((letter) => {
@@ -18,8 +22,8 @@ export const Keyboard = () => {
             return (
               <Box
                 key={letter}
-                width={4}
-                height={2}
+                width={isCompact ? 3 : 4}
+                height={isCompact ? 2 : 2}
                 borderStyle="round"
                 borderColor={color}
                 alignItems="center"

@@ -22,7 +22,7 @@ export const Header = ({ terminalWidth, terminalHeight }: HeaderProps) => {
   const width = getAsciiArtWidth(asciiArt);
 
   const displayTitle =
-    terminalWidth >= width && terminalHeight >= 30 ? asciiArt.trim() : smallAsciiArt;
+    terminalWidth >= width && terminalHeight >= 36 ? asciiArt.trim() : smallAsciiArt;
   const artWidth = getAsciiArtWidth(displayTitle);
 
   return (

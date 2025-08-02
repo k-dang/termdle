@@ -6,7 +6,11 @@ import { Statistics } from './Statistics';
 import { Keyboard } from './Keyboard';
 import Gradient from 'ink-gradient';
 
-export const GameStatus = () => {
+interface GameStatusProps {
+  isCompact?: boolean;
+}
+
+export const GameStatus = ({ isCompact }: GameStatusProps) => {
   const { currentGuess, maxGuesses, gameOver, won, targetWord } = useAtomValue(gameStateAtom);
   const resetGame = useSetAtom(resetGameAtom);
   const resetStats = useSetAtom(resetStatsAtom);
@@ -38,7 +42,7 @@ export const GameStatus = () => {
         <Box flexDirection="column" alignItems="center">
           {won ? (
             <Text color="green" bold>
-              🎉 Congratulations! You won! 🎉
+              '🎉 You won! 🎉'
             </Text>
           ) : (
             <Text color="red" bold>
@@ -51,7 +55,7 @@ export const GameStatus = () => {
               : `The word was: ${targetWord.toUpperCase()}`}
           </Text>
 
-          <Statistics />
+          <Statistics isCompact={isCompact} />
 
           {invalidInput && (
             <Text color="red" italic>
@@ -69,7 +73,7 @@ export const GameStatus = () => {
           <Gradient name="vice">
             <Text color="blue">Guesses remaining: {maxGuesses - currentGuess}</Text>
           </Gradient>
-          <Keyboard />
+          <Keyboard isCompact={isCompact} />
         </Box>
       )}
     </Box>
