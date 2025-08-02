@@ -19,10 +19,10 @@ interface HeaderProps {
 }
 
 export const Header = ({ terminalWidth, terminalHeight }: HeaderProps) => {
-  const width = getAsciiArtWidth(asciiArt);
+  const asciiArtWidth = getAsciiArtWidth(asciiArt);
 
   const displayTitle =
-    terminalWidth >= width && terminalHeight >= 36 ? asciiArt.trim() : smallAsciiArt;
+    terminalWidth >= asciiArtWidth && terminalHeight >= 36 ? asciiArt.trim() : smallAsciiArt;
   const artWidth = getAsciiArtWidth(displayTitle);
 
   return (
