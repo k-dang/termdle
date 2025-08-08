@@ -45,7 +45,12 @@ export const GameBoard = ({ isCompact }: GameBoardProps) => {
         return (
           <Box key={i}>
             {row.map((letterResult, i) => (
-              <Letter key={`${i}`} letter={letterResult.letter} state={letterResult.state} isCompact={isCompact} />
+              <Letter
+                key={`${i}`}
+                letter={letterResult.letter}
+                state={letterResult.state}
+                isCompact={isCompact}
+              />
             ))}
           </Box>
         );
