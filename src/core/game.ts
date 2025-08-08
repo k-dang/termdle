@@ -1,3 +1,4 @@
+import { getDailyWord } from './api';
 import { getRandomTargetWord, isValidWord } from './words';
 
 export enum LetterState {
@@ -25,9 +26,9 @@ export interface GameState {
 export class WordleGame {
   private state: GameState;
 
-  constructor() {
+  constructor(initialTargetWord?: string) {
     this.state = {
-      targetWord: getRandomTargetWord(),
+      targetWord: initialTargetWord ?? getRandomTargetWord(),
       guesses: [],
       results: [],
       letterStates: new Map<string, LetterState>(),
@@ -143,6 +144,11 @@ export class WordleGame {
         this.state.letterStates.set(letter, letterResult.state);
       }
     }
+  }
+
+  public static async create(): Promise<WordleGame> {
+    const targetWord = await getDailyWord();
+    return new WordleGame(targetWord);
   }
 
   public reset(): void {
