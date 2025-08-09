@@ -10,18 +10,19 @@ interface GameBoardProps {
 
 export const GameBoard = ({ isCompact }: GameBoardProps) => {
   const [letters, setLetters] = useState<string[]>([]);
-  const { results, currentGuess, maxGuesses, gameOver, won } = useAtomValue(gameStateAtom);
+  const gameState = useAtomValue(gameStateAtom);
   const makeGuess = useSetAtom(makeGuessAtom);
   const recordGame = useSetAtom(recordGameAtom);
 
+  // Handle game over state
   useEffect(() => {
-    if (gameOver) {
-      recordGame(won, currentGuess);
+    if (gameState && gameState.gameOver) {
+      recordGame(gameState.won, gameState.currentGuess);
     }
-  }, [gameOver, won, currentGuess, recordGame]);
+  }, [gameState, recordGame]);
 
   useInput((input, key) => {
-    if (gameOver) {
+    if (!gameState || gameState.gameOver) {
       return;
     }
 
@@ -37,6 +38,13 @@ export const GameBoard = ({ isCompact }: GameBoardProps) => {
       setLetters([]);
     }
   });
+
+  // Game state should always be available now
+  if (!gameState) {
+    return null;
+  }
+
+  const { results, currentGuess, maxGuesses } = gameState;
 
   return (
     <Box flexDirection="column" marginY={isCompact ? 0 : 1}>

@@ -1,20 +1,30 @@
 import { atom } from 'jotai';
-import { WordleGame } from '../../../core/game';
+import { GameState, WordleGame } from '../../../core/game';
 import { StatsManager } from '../../../core/stats';
 
-const game = new WordleGame();
 const statsManager = new StatsManager();
 
-export const gameStateAtom = atom(game.getState());
+// TODO make this non nullable
+export const gameAtom = atom<WordleGame | null>(null);
+
+export const gameStateAtom = atom<GameState | null>(null);
 
 export const makeGuessAtom = atom(null, (_get, set, guess: string) => {
-  game.makeGuess(guess);
-  set(gameStateAtom, game.getState());
+  const game = _get(gameAtom);
+  if (game) {
+    game.makeGuess(guess);
+    // Create a new object reference to ensure Jotai detects the change
+    set(gameStateAtom, { ...game.getState() });
+  }
 });
 
-export const resetGameAtom = atom(null, (_get, set) => {
-  game.reset();
-  set(gameStateAtom, game.getState());
+export const resetGameAtom = atom(null, async (_get, set) => {
+  const game = _get(gameAtom);
+  if (game) {
+    game.reset();
+    // Create a new object reference to ensure Jotai detects the change
+    set(gameStateAtom, { ...game.getState() });
+  }
 });
 
 export const getStatsAtom = atom(statsManager.getStats());
