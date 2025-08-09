@@ -11,14 +11,14 @@ interface GameStatusProps {
 }
 
 export const GameStatus = ({ isCompact }: GameStatusProps) => {
-  const gameState = useAtomValue(gameStateAtom);
+  const { currentGuess, maxGuesses, gameOver, won, targetWord } = useAtomValue(gameStateAtom);
   const resetGame = useSetAtom(resetGameAtom);
   const resetStats = useSetAtom(resetStatsAtom);
   const [invalidInput, setInvalidInput] = useState(false);
   const { exit } = useApp();
 
   useInput((input) => {
-    if (gameState && gameState.gameOver) {
+    if (gameOver) {
       const lowerInput = input.toLowerCase();
 
       if (lowerInput === 'p' || lowerInput === 'play') {
@@ -35,13 +35,6 @@ export const GameStatus = ({ isCompact }: GameStatusProps) => {
       }
     }
   });
-
-  // Game state should always be available now
-  if (!gameState) {
-    return null;
-  }
-
-  const { currentGuess, maxGuesses, gameOver, won, targetWord } = gameState;
 
   return (
     <Box flexDirection="column" alignItems="center">

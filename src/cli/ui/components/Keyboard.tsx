@@ -9,14 +9,7 @@ interface KeyboardProps {
 
 export const Keyboard = ({ isCompact }: KeyboardProps) => {
   const rows = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'];
-  const gameState = useAtomValue(gameStateAtom);
-
-  // Game state should always be available now
-  if (!gameState) {
-    return null;
-  }
-
-  const { letterStates } = gameState;
+  const { letterStates } = useAtomValue(gameStateAtom);
 
   return (
     <Box flexDirection="column" alignItems="center" marginTop={isCompact ? 0 : 1}>
