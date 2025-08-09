@@ -26,7 +26,7 @@ export const GameBoard = ({ isCompact }: GameBoardProps) => {
       return;
     }
 
-    if (key.backspace) {
+    if (key.backspace || key.delete) {
       setLetters((prev) => prev.slice(0, -1));
       return;
     }
