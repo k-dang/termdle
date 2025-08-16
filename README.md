@@ -121,6 +121,18 @@ pnpm run lint
 pnpm run format
 ```
 
+**Bumping version**
+
+Make sure to bump package versions on package json
+
+```bash
+pnpm version major
+
+pnpm version minor
+
+pnpm version patch
+```
+
 ## Publishing
 
 This repo is setup to publish upon merges to main via Github actions. You can also run the commands manually.
