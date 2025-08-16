@@ -57,8 +57,9 @@ export const targetWords = [
 ];
 
 // Extended list of valid 5-letter words for guesses (includes target words + additional valid words)
+// Create a Set for O(1) lookup performance
 // prettier-ignore
-export const validWords = [
+export const validWords = new Set([
   ...targetWords,
   // Common 5-letter words
   'hello', 'world', 'games', 'words', 'plays', 'times', 'years', 'looks', 'makes', 'comes',
@@ -167,7 +168,7 @@ export const validWords = [
   'wants', 'warms', 'warns', 'waves', 'wears', 'weeds', 'weeks', 'weird', 'wells', 'welsh',
   'wheat', 'widow', 'width', 'winds', 'wines', 'wings', 'winks', 'wipes', 'wired', 'wires',
   'witch', 'wives', 'woods', 'worms', 'wound', 'wraps', 'yards', 'yeast', 'zones'
-];
+]);
 
 /**
  * Returns a random 5-letter target word from the predefined list.
@@ -185,5 +186,5 @@ export function getRandomTargetWord(): string {
 }
 
 export function isValidWord(word: string): boolean {
-  return validWords.includes(word.toLowerCase());
+  return validWords.has(word.toLowerCase());
 }
