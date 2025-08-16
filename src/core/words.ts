@@ -1,6 +1,5 @@
-// Common 5-letter words that can be used as target words
 // prettier-ignore
-export const targetWords = [
+const targetWords = [
   'about', 'above', 'abuse', 'actor', 'acute', 'admit', 'adopt', 'adult', 'after', 'again',
   'agent', 'agree', 'ahead', 'alarm', 'album', 'alert', 'alien', 'align', 'alike', 'alive',
   'allow', 'alone', 'along', 'alter', 'among', 'anger', 'angle', 'angry', 'apart', 'apple',
@@ -56,10 +55,8 @@ export const targetWords = [
   'youth'
 ];
 
-// Extended list of valid 5-letter words for guesses (includes target words + additional valid words)
-// Create a Set for O(1) lookup performance
 // prettier-ignore
-export const validWords = new Set([
+const validWords = new Set([
   ...targetWords,
   // Common 5-letter words
   'hello', 'world', 'games', 'words', 'plays', 'times', 'years', 'looks', 'makes', 'comes',
@@ -67,7 +64,6 @@ export const validWords = new Set([
   'hands', 'books', 'lines', 'parts', 'helps', 'finds', 'calls', 'tells', 'wants', 'needs',
   'opens', 'takes', 'stops', 'talks', 'walks', 'reads', 'lives', 'loves', 'hates', 'likes',
   'knows', 'hopes', 'tries', 'falls', 'rises', 'rides', 'flies', 'jumps',
-  // Additional valid words from dictionaries
   'aahed', 'aalii', 'aargh', 'abaca', 'abaci', 'abaft', 'abaka', 'abamp', 'abash', 'abate',
   'abaya', 'abbey', 'abbot', 'abear', 'abele', 'abers', 'abets', 'abhor', 'abide', 'abled',
   'abler', 'ables', 'abmho', 'abode', 'abohm', 'aboil', 'aboma', 'aboon', 'abort', 'abray',
@@ -102,7 +98,6 @@ export const validWords = new Set([
   'amigo', 'amine', 'amino', 'amins', 'amirs', 'amiss', 'amity', 'amlas', 'ammil', 'ammon',
   'ammos', 'amnia', 'amnic', 'amnio', 'amoks', 'amole', 'among', 'amort', 'amour', 'amove',
   'amowt', 'amped', 'ample', 'amply', 'ampul', 'amrit', 'amuck', 'amuse',
-  // Additional common 5-letter words
   'badge', 'bagel', 'balls', 'bands', 'banks', 'barks', 'beard', 'bears', 'beast', 'beats',
   'belly', 'bikes', 'bills', 'birds', 'blade', 'blank', 'blast', 'blaze', 'bleed', 'blend',
   'bless', 'blink', 'bloom', 'blown', 'blues', 'blunt', 'blush', 'boast', 'boats', 'bobby',
