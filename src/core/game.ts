@@ -39,7 +39,7 @@ export class WordleGame {
   }
 
   public getState(): GameState {
-    return this.state;
+    return { ...this.state };
   }
 
   public makeGuess(guess: string): { valid: boolean; message?: string; result?: LetterResult[] } {

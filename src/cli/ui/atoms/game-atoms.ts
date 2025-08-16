@@ -9,12 +9,12 @@ export const gameStateAtom = atom(game.getState());
 
 export const makeGuessAtom = atom(null, (_get, set, guess: string) => {
   game.makeGuess(guess);
-  set(gameStateAtom, { ...game.getState() });
+  set(gameStateAtom, game.getState());
 });
 
 export const resetGameAtom = atom(null, async (_get, set) => {
   game.reset();
-  set(gameStateAtom, { ...game.getState() });
+  set(gameStateAtom, game.getState());
 });
 
 export const getStatsAtom = atom(statsManager.getStats());
