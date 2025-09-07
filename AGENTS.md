@@ -32,5 +32,8 @@
 
 ## Agent Notes
 
-- No existing AGENTS.md file found
 - No Cursor or Copilot rules found
+
+## Ignore Files
+
+- Ignore the `node_modules` directory
