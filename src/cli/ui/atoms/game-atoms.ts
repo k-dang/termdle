@@ -1,6 +1,6 @@
 import { atom } from 'jotai';
-import { WordleGame } from '../../../core/game';
-import { StatsManager } from '../../../core/stats';
+import { WordleGame } from '@/core/game';
+import { StatsManager } from '@/core/stats';
 
 export const game = new WordleGame();
 const statsManager = new StatsManager();

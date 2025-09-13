@@ -1,7 +1,7 @@
 import { Box, Text } from 'ink';
 import { useAtomValue } from 'jotai';
-import { gameStateAtom } from '../atoms/game-atoms';
-import { colors } from '../utils/colors';
+import { gameStateAtom } from '@/cli/ui/atoms/game-atoms';
+import { colors } from '@/cli/ui/utils/colors';
 
 interface KeyboardProps {
   isCompact?: boolean;

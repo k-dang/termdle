@@ -1,6 +1,6 @@
 import { Box, Text } from 'ink';
-import { LetterState } from '../../../core/game';
-import { colors } from '../utils/colors';
+import { LetterState } from '@/core/game';
+import { colors } from '@/cli/ui/utils/colors';
 
 interface LetterProps {
   letter: string;

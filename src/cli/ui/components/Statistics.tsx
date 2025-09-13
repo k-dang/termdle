@@ -1,6 +1,6 @@
 import { Box, Text } from 'ink';
 import { useAtomValue } from 'jotai';
-import { getStatsAtom } from '../atoms/game-atoms';
+import { getStatsAtom } from '@/cli/ui/atoms/game-atoms';
 
 interface StatisticsProps {
   isCompact?: boolean;

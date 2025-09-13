@@ -1,9 +1,9 @@
 import { Box, Text, useApp, useInput } from 'ink';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { gameStateAtom, resetGameAtom, resetStatsAtom } from '../atoms/game-atoms';
+import { gameStateAtom, resetGameAtom, resetStatsAtom } from '@/cli/ui/atoms/game-atoms';
 import { useState } from 'react';
-import { Statistics } from './Statistics';
-import { Keyboard } from './Keyboard';
+import { Statistics } from '@/cli/ui/components/Statistics';
+import { Keyboard } from '@/cli/ui/components/Keyboard';
 import Gradient from 'ink-gradient';
 
 interface GameStatusProps {

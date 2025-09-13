@@ -1,4 +1,4 @@
-import { LetterState } from '../../../core/game';
+import { LetterState } from '@/core/game';
 
 export const colors = {
   [LetterState.CORRECT]: 'green',

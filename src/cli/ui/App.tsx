@@ -1,8 +1,8 @@
 import { Box } from 'ink';
-import { Header } from './components/Header';
-import { GameBoard } from './components/GameBoard';
-import { GameStatus } from './components/GameStatus';
-import { useTerminalSize } from './hooks/useTerminalSize';
+import { Header } from '@/cli/ui/components/Header';
+import { GameBoard } from '@/cli/ui/components/GameBoard';
+import { GameStatus } from '@/cli/ui/components/GameStatus';
+import { useTerminalSize } from '@/cli/ui/hooks/useTerminalSize';
 
 export const App = () => {
   const { rows: terminalHeight, columns: terminalWidth } = useTerminalSize();

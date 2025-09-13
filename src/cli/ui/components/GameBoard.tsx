@@ -1,8 +1,8 @@
 import { Box, Text, useInput } from 'ink';
-import { Letter } from './Letter';
+import { Letter } from '@/cli/ui/components/Letter';
 import { useEffect, useState } from 'react';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { gameStateAtom, makeGuessAtom, recordGameAtom } from '../atoms/game-atoms';
+import { gameStateAtom, makeGuessAtom, recordGameAtom } from '@/cli/ui/atoms/game-atoms';
 
 interface GameBoardProps {
   isCompact?: boolean;
