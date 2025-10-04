@@ -1,7 +1,12 @@
 import { Box, Text, useApp, useInput } from 'ink';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { gameStateAtom, resetGameAtom, resetStatsAtom } from '@/cli/ui/atoms/game-atoms';
-import { useState } from 'react';
+import {
+  gameStateAtom,
+  messageAtom,
+  resetGameAtom,
+  resetStatsAtom,
+} from '@/cli/ui/atoms/game-atoms';
+import { useState, useEffect } from 'react';
 import { Statistics } from '@/cli/ui/components/Statistics';
 import { Keyboard } from '@/cli/ui/components/Keyboard';
 import Gradient from 'ink-gradient';
@@ -14,6 +19,8 @@ export const GameStatus = ({ isCompact }: GameStatusProps) => {
   const { currentGuess, maxGuesses, gameOver, won, targetWord } = useAtomValue(gameStateAtom);
   const resetGame = useSetAtom(resetGameAtom);
   const resetStats = useSetAtom(resetStatsAtom);
+  const message = useAtomValue(messageAtom);
+  const setMessage = useSetAtom(messageAtom);
   const [invalidInput, setInvalidInput] = useState(false);
   const { exit } = useApp();
 
@@ -35,6 +42,12 @@ export const GameStatus = ({ isCompact }: GameStatusProps) => {
       }
     }
   });
+
+  useEffect(() => {
+    if (message) {
+      setTimeout(() => setMessage(null), 2000);
+    }
+  }, [message]);
 
   return (
     <Box flexDirection="column" alignItems="center">
@@ -70,6 +83,11 @@ export const GameStatus = ({ isCompact }: GameStatusProps) => {
         </Box>
       ) : (
         <Box flexDirection="column" alignItems="center">
+          {message && (
+            <Box marginBottom={1}>
+              <Text color="red">{message}</Text>
+            </Box>
+          )}
           <Gradient name="vice">
             <Text color="blue">Guesses remaining: {maxGuesses - currentGuess}</Text>
           </Gradient>
