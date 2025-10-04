@@ -42,7 +42,7 @@ export const GameStatus = ({ isCompact }: GameStatusProps) => {
         <Box flexDirection="column" alignItems="center">
           {won ? (
             <Text color="green" bold>
-              '🎉 You won! 🎉'
+              🎉 You won! 🎉
             </Text>
           ) : (
             <Text color="red" bold>
