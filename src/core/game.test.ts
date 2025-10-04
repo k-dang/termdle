@@ -2,13 +2,13 @@ import { describe, expect, test, beforeEach } from 'vitest';
 import { WordleGame, LetterState } from './game';
 
 describe('WordleGame tests', () => {
+  let game: WordleGame;
+
+  beforeEach(() => {
+    game = new WordleGame();
+  });
+
   describe('makeGuess', () => {
-    let game: WordleGame;
-
-    beforeEach(() => {
-      game = new WordleGame();
-    });
-
     describe('validation', () => {
       test('should reject guess with less than 5 letters', () => {
         const result = game.makeGuess('abc');
@@ -220,12 +220,6 @@ describe('WordleGame tests', () => {
   });
 
   describe('reset', () => {
-    let game: WordleGame;
-
-    beforeEach(() => {
-      game = new WordleGame();
-    });
-
     test('should reset game state', () => {
       game.setTargetWord('hello');
       game.makeGuess('about');
@@ -283,6 +277,21 @@ describe('WordleGame tests', () => {
       expect(afterReset.won).toBe(false);
       expect(afterReset.currentGuess).toBe(0);
       expect(afterReset.guesses.length).toBe(0);
+    });
+  });
+
+  describe('revealAnswer', () => {
+    test('should return the target word', () => {
+      game.setTargetWord('hello');
+      const answer = game.revealAnswer();
+      expect(answer).toBe('hello');
+    });
+
+    test('should return a valid 5-letter word by default', () => {
+      const answer = game.revealAnswer();
+      expect(typeof answer).toBe('string');
+      expect(answer.length).toBe(5);
+      expect(answer).toBe(answer.toLowerCase());
     });
   });
 });
