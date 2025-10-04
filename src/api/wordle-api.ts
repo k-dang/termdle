@@ -1,5 +1,5 @@
-import { getTodaysDate } from './date';
-import { getRandomTargetWord } from './words';
+import { getTodaysDate } from '../core/date';
+import { getRandomTargetWord } from '../core/words';
 
 interface NytWordleResponse {
   id: number;

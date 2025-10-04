@@ -4,7 +4,7 @@ import { exit } from 'process';
 import { render } from 'ink';
 import { App } from '@/cli/ui/App';
 import { game } from '@/cli/ui/atoms/game-atoms';
-import { getDailyWord } from '@/core/api';
+import { getDailyWord } from '@/api/wordle-api';
 
 try {
   const dailyWord = await getDailyWord();
