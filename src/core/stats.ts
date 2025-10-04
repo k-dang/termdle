@@ -65,9 +65,7 @@ export class StatsManager {
       this.stats.won++;
       this.stats.currentStreak++;
 
-      if (this.stats.currentStreak > this.stats.maxStreak) {
-        this.stats.maxStreak = this.stats.currentStreak;
-      }
+      this.stats.maxStreak = Math.max(this.stats.maxStreak, this.stats.currentStreak);
 
       // Record guess distribution (guessCount is 1-indexed, array is 0-indexed)
       if (guessCount >= 1 && guessCount <= 6) {

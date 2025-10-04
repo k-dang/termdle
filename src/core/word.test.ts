@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import { getRandomTargetWord, isValidWord } from './words';
 
-describe('Words Module', () => {
+describe('Words tests', () => {
   describe('getRandomTargetWord', () => {
     test('should return a string', () => {
       const word = getRandomTargetWord();
