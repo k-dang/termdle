@@ -14853,7 +14853,7 @@ const validWords = [
   'zygal',
   'zygon',
   'zymes',
-  'zymic'
+  'zymic',
 ];
 
 export default validWords;

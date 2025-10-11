@@ -12,7 +12,7 @@ describe('getTodaysDate', () => {
     vi.useRealTimers();
   });
 
-  test('should return today\'s date in YYYY-MM-DD format', () => {
+  test("should return today's date in YYYY-MM-DD format", () => {
     // Set a specific date for testing
     const mockDate = new Date('2024-01-15T10:30:00Z');
     vi.setSystemTime(mockDate);
@@ -25,7 +25,7 @@ describe('getTodaysDate', () => {
 
   test('should handle different timezones consistently', () => {
     // Test with different timezone offsets
-    const mockDate = new Date('2024-06-15T15:30:00'); 
+    const mockDate = new Date('2024-06-15T15:30:00');
     vi.setSystemTime(mockDate);
 
     const result = getTodaysDate();

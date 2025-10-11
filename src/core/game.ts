@@ -52,7 +52,10 @@ export class WordleGame {
       return { valid: false, message: 'Guess must be exactly 5 letters!' };
     }
 
-    if (guess.toLowerCase() !== this.state.targetWord.toLowerCase() && !isValidWord(guess.toLowerCase())) {
+    if (
+      guess.toLowerCase() !== this.state.targetWord.toLowerCase() &&
+      !isValidWord(guess.toLowerCase())
+    ) {
       return { valid: false, message: 'Not a valid word!' };
     }
 

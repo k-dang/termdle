@@ -1,6 +1,7 @@
 import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import { homedir } from 'os';
+import { getTodaysDate } from './date';
 
 export interface GameStats {
   played: number;
@@ -8,6 +9,7 @@ export interface GameStats {
   currentStreak: number;
   maxStreak: number;
   guessDistribution: number[]; // Index 0 = 1 guess, Index 1 = 2 guesses, etc.
+  lastCompletedDate?: string; // Date when last game was completed (YYYY-MM-DD)
 }
 
 export class StatsManager {
@@ -60,6 +62,7 @@ export class StatsManager {
 
   public recordGame(won: boolean, guessCount?: number): void {
     this.stats.played++;
+    this.stats.lastCompletedDate = getTodaysDate();
 
     if (won && guessCount) {
       this.stats.won++;
@@ -108,5 +111,9 @@ export class StatsManager {
     }
 
     return Math.round((totalGuesses / this.stats.won) * 100) / 100;
+  }
+
+  public hasCompletedToday(): boolean {
+    return this.stats.lastCompletedDate === getTodaysDate();
   }
 }
