@@ -30,10 +30,6 @@
 - React components use Ink for terminal rendering
 - State management with Jotai atoms
 
-## Agent Notes
-
-- No Cursor or Copilot rules found
-
 ## Ignore Files
 
 - Ignore the `node_modules` directory
