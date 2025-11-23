@@ -12,18 +12,20 @@ try {
   const statsManager = new StatsManager();
 
   let targetWord: string;
+  let initialMessage: string | null = null;
   if (statsManager.hasCompletedToday()) {
     targetWord = getRandomTargetWord();
-    console.log(
-      "You have already completed today's daily word. Playing with a random word instead. \n"
-    );
+    initialMessage = "You have already completed today's daily word. Playing with a random word instead.";
   } else {
     targetWord = await getDailyWord();
   }
 
   game.setTargetWord(targetWord);
 
-  const { waitUntilExit } = render(<App />, { exitOnCtrlC: true });
+  // Clear screen and move cursor to top
+  process.stdout.write('\x1b[2J\x1b[H');
+
+  const { waitUntilExit } = render(<App initialMessage={initialMessage} />, { exitOnCtrlC: true });
   await waitUntilExit();
   exit();
 } catch (error) {
