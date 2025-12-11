@@ -50,9 +50,9 @@ export const GameStatus = ({ isCompact }: GameStatusProps) => {
   }, [message]);
 
   return (
-    <Box flexDirection="column" alignItems="center">
+    <Box flexDirection="column" alignItems="center" width="100%">
       {gameOver ? (
-        <Box flexDirection="column" alignItems="center">
+        <Box flexDirection="column" alignItems="center" width="100%">
           {won ? (
             <Text color="green" bold>
               🎉 You won! 🎉
@@ -82,7 +82,7 @@ export const GameStatus = ({ isCompact }: GameStatusProps) => {
           </Box>
         </Box>
       ) : (
-        <Box flexDirection="column" alignItems="center">
+        <Box flexDirection="column" alignItems="center" width="100%">
           {message && (
             <Box marginBottom={1}>
               <Text color="red">{message}</Text>
