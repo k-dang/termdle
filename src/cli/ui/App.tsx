@@ -16,9 +16,7 @@ export const App = ({ initialMessage }: AppProps) => {
     <Box
       flexDirection="column"
       width={terminalWidth}
-      height={terminalHeight}
       alignItems="center"
-      justifyContent="flex-start"
       paddingTop={2}
     >
       <Header terminalWidth={terminalWidth} terminalHeight={terminalHeight} />
